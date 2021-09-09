@@ -21,10 +21,9 @@ public class ProdukDaoJdbc {
     private PreparedStatement getAllStatement;
 
     // query
-    private final String insertQuery = "insert into produk (nama, harga, quantity)" +
-            "values(?, ?, ?)";
-    private final String updateQuery = "update produk set nama = ?, harga = ?, quantity = ?," +
-            "where id = ?";
+    private final String insertQuery = "insert into produk (nama, harga, quantity, id)" +
+            "values(?, ?, ?, ?)";
+    private final String updateQuery = "update produk set nama = ?, harga = ?, quantity = ? where id = ?";
     private final String deleteQuery = "delete from produk where id ?";
     private final String getByIdQuery = "select * from produk where id ?";
     private final String getAllQuery = "select * from produk";
@@ -59,16 +58,23 @@ public class ProdukDaoJdbc {
 
     public Produk save(Produk produk) throws SQLException {
 
+        // yang ditutorial karena id nya auto increment, jadi diisi otomatis
+        // kasus kita tidak menggunakan id auto, tapi generate id sendiri jadi beda logic
         if(produk.getId() == null){
             insertStatement.setString(1, produk.getNama());
             insertStatement.setInt(2, produk.getHarga());
             insertStatement.setInt(3, produk.getQuantity());
             produk.setId(incrementId());
+            produk.setId(incrementId());
+
+            insertStatement.setString(4, produk.getId());
+            insertStatement.executeUpdate();
         } else {
             updateStatement.setString(1, produk.getNama());
             updateStatement.setInt(2, produk.getHarga());
             updateStatement.setInt(3, produk.getQuantity());
             updateStatement.setString(4, produk.getId());
+            updateStatement.executeUpdate();
         }
         return produk;
     }
