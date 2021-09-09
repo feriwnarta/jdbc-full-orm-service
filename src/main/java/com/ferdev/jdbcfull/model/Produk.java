@@ -1,12 +1,15 @@
 package com.ferdev.jdbcfull.model;
 
+import java.sql.Date;
+
 public class Produk {
     private String id;
     private String nama;
     private String deskripsi;
-    private String harga;
-    private String quantity;
-    private String waktuDibuat;
+    private int harga;
+    private int quantity;
+    private Date waktuDibuat;
+    private String id_kategori;
     private String sample;
     private String contoh;
 
@@ -34,27 +37,27 @@ public class Produk {
         this.deskripsi = deskripsi;
     }
 
-    public String getHarga() {
+    public int getHarga() {
         return harga;
     }
 
-    public void setHarga(String harga) {
+    public void setHarga(int harga) {
         this.harga = harga;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public String getWaktuDibuat() {
+    public Date getWaktuDibuat() {
         return waktuDibuat;
     }
 
-    public void setWaktuDibuat(String waktuDibuat) {
+    public void setWaktuDibuat(Date waktuDibuat) {
         this.waktuDibuat = waktuDibuat;
     }
 
